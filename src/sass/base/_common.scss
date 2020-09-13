@@ -1,0 +1,128 @@
+:root {
+	font-family: $fontDefault;
+	font-size: 16px;
+}
+
+*, :before, :after {
+	box-sizing: border-box;
+}
+
+body, html {
+	width: 100%;
+	height: 100%;
+}
+body {
+	//font-family: $fontDefault;
+	//font-size: 16px;
+	display: grid;
+	grid-template-areas: "header"
+						 "content"
+						 "footer";
+
+	grid-template-columns: 100%;
+	grid-row-gap: 30px;
+	row-gap: 30px;
+	min-height: 100vh;
+	background-color: $white;
+	overflow-x: hidden;
+	&.body {
+		&-nogrid {
+			display: flex;
+			flex-direction: column;
+		}
+		&-nogap {
+			grid-row-gap: 0;
+			row-gap: 0;
+		}
+	}
+	&.noScroll {
+		overflow: hidden;
+	}
+}
+main {grid-area: content;}
+a {
+	text-decoration:  none;
+	color: $white;
+	
+	&:hover { color: $blue;}
+	&:focus { outline: $jade auto 5px;}
+	&:active { color: $turquoise;}
+	//&:visited { color: $grey;}
+}
+ul, ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+address {font-style: normal;}
+.container {
+	width: 100%;
+
+	> * {
+		padding: 1em 0;
+		&:first-child {padding-top: 0;}
+	}
+}
+.wrapper {
+	width: 100%;
+	padding: 0 1em;
+	margin: 0 auto;
+}
+
+//Background colors
+.background {
+	&-grey {background-color: $grey;}
+	&-purple {background-color: $purple;}
+	&-green {background-color: $green;}
+	&-turquoise {background-color: $turquoise;}
+	&-greyDarker {background-color: $grey-darker;}
+	&-red {background-color: $red;}
+	&-blue {background-color: $blue;}
+	&-lightPurple{background-color: $light-purple;}
+
+}
+
+//text colors
+.color {
+	&-blue {color: $blue;}
+	&-green {color: $green;}
+	&-red {color: $red;}
+}
+
+//Stars
+.star {
+	&-yellow,
+	&-empty {
+		color: $yellow;
+		&:before {
+			margin: 0;
+		}
+	}
+}
+
+.item-fiveStars {
+	display: flex;
+}
+
+//Image
+.img-responsive {
+	max-width: 100%;
+	height: auto;
+}
+
+//Social icons
+.icon {
+	&-facebook-circled {color: $facebook-color;}
+	&-twitter-circled {color: $twitter-color;}
+	&-linkedin-circled {color: $linkedin-color;}
+	&-mail-circled {color: $black;}
+}
+
+//bar
+.bar {
+	&-blue {background-color: $blue;}
+	&-purple {background-color: $purple;}
+	&-lightPurple {background-color: $light-purple;}
+	&-turquoise {background-color: $turquoise;}
+	&-grey {background-color: $grey;}
+}

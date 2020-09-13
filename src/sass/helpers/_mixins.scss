@@ -1,0 +1,320 @@
+/*$media-expressions: (screen: "screen", 
+                    handheld: "handheld",
+                    retina2x: 
+                    ("(-webkit-min-device-pixel-ratio: 2)", 
+                    "(min-resolution: 192dpi)")) !default;*/
+
+@mixin tablet-lg {
+	@media screen and (min-width: $tablet-large) {
+		@content;
+	}
+}
+
+@mixin tablet-big {
+	@media screen and (min-width: $tablet-big) {
+		@content;
+	}
+}
+
+@mixin screen-lg {
+	@media screen and (min-width: $screen-large) {
+		@content;
+	}
+}
+
+@mixin retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+@mixin print {
+  @media print {
+    @content;
+  }
+}
+
+/*Screen reader*/
+//Display content only for screen reader
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+//Display content only when focused for screen reader
+
+@mixin sr-only-focusable {
+  &:active,
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    clip-path: none;
+  }
+}
+
+//Colums generator
+@mixin responsive-columns($suffix: ''){
+
+    @for $i from 1 through $columns{
+    
+        @if $i != 0{
+
+            .col-#{$suffix}-#{$i}{
+
+                width: $i / $columns * 100%; 
+            }
+        }
+
+        .col-#{$suffix}-center{
+            margin: 0 auto;
+            float: none;
+        }
+
+        .col-#{$suffix}-push-#{$i}{
+            left: $i / $columns * 100%;
+        }
+
+        .col-#{$suffix}-offset-#{$i}{
+            margin-left: $i / $columns * 100%;
+        }
+
+        .col-#{$suffix}-pull-#{$i}{
+            left: $i / $columns * 100%;
+        }
+    }
+}
+
+//Margin left && right
+@mixin push-auto{
+    margin: { 
+        left: auto;
+        right: auto;
+    }
+}
+
+//Width & height
+@mixin dimension($width, $height)  {
+    width: $width;
+    height: $height;
+}
+
+//Background
+@mixin backgroundImg($imgPath, $position: 0 0, $repeat: no-repeat, $size: false, $color: false)  {
+    background: {
+        image: url($imgPath);
+        position: $position;
+        repeat: $repeat;
+    }
+
+    @if $size { background-size: $size; }
+    @if $color { background-color: $color; }
+}
+
+// ::before || ::after
+@mixin pseudo($display: false, $pos: false, $content: '', $bgColor: false, $width: false, $height: false){
+    content: $content;
+    @if $display { display: $display; }
+    @if $pos { position: $pos; }
+    @if $bgColor { background-color: $bgColor; }
+    @if $width { width: $width; }
+    @if $height { height: $height; }
+}
+
+//Responsive ratio for img || bg img
+@mixin responsive-ratio($x,$y, $pseudo: false){
+    $padding: unquote( ( $y / $x ) * 100 + '%' );
+
+    @if $pseudo {
+        &:before {
+            @include pseudo($pos: relative);
+            width: 100%;
+            padding-top: $padding;
+        }
+    } 
+    @else {
+        padding-top: $padding;
+    }
+}
+
+//CSS triangles
+@mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false){
+    
+    @include pseudo($pos: $position);
+    width: 0;
+    height: 0;
+
+    @if $round {
+        border-radius: 3px;
+    }
+    @if $direction == down {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-top: $size solid $color;
+        margin-top: 0 - round( $size / 2.5 );
+    } 
+    @else if $direction == up {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        margin-bottom: 0 - round( $size / 2.5 );
+    } 
+    @else if $direction == right {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+        margin-right: -$size;
+    } 
+    @else if  $direction == left {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right: $size solid $color;
+        margin-left: -$size;
+    }
+}
+
+//Font styling
+@mixin font-styling($family : false, $size: false, $colour: false, $weight: false,  $lh: false, $transform: false) {
+    @if $family{ font-family: $family, Helvetica, Arial, sans-serif };
+    @if $size { font-size: $size; }
+    @if $colour { color: $colour; }
+    @if $weight { font-weight: $weight; }
+    @if $lh { line-height: $lh; }
+    @if $transform{ text-transform: $transform; }
+}
+
+//Calculate font-size
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateSize($size, rem);
+}
+
+//Placeholder
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+//Example
+//input,  
+//textarea {  
+//    @include input-placeholder {
+//        color: $grey;
+//    }
+//}
+
+//Hardware
+@mixin hardware($backface: true, $perspective: 1000) {
+    @if $backface {
+        backface-visibility: hidden;
+    }
+    perspective: $perspective;
+}
+
+//Truncate
+@mixin truncate($truncation-boundary) {
+    max-width: $truncation-boundary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+//  ----- Support for IE 7-8-9 -----
+// You will need to add conditional classes on your <html> element
+@mixin forIE( $ieVersion ) {
+    .ie#{$ieVersion} & {
+        @content;
+    }
+}
+
+//Transition
+@mixin transition( $values... ) {
+    @each $prefix in -webkit-, '' {
+        #{$prefix}transition: $values;
+    }
+}
+
+//Round corner
+@mixin rounded-corner($arc) {
+    -moz-border-radius: $arc;
+    -webkit-border-radius: $arc;
+    border-radius: $arc;  
+}
+
+//Opacity
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/// Mixin to customize scrollbars
+/// Beware, this does not work in all browsers
+/// @author Hugo Giraudel
+/// @param {Length} $size - Horizontal scrollbar's height and vertical scrollbar's width
+/// @param {Color} $foreground-color - Scrollbar's color
+/// @param {Color} $background-color [mix($foreground-color, white, 50%)] - Scrollbar's color
+/// @example scss - Scrollbar styling
+///   @include scrollbars(.5em, slategray);
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  // For Google Chrome
+  ::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+//Media queries
+$breakpoints: (
+    "phone":        320px,
+    "phone-wide":   480px,
+    //"phablet":      560px,
+    "tablet-small": 640px,
+    "tablet":       768px,
+    "tablet-wide":  992px,
+    "desktop":      1200px,
+    "desktop-wide": 1440px
+);
+
+@mixin mq($width, $type: min) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+        @if $type == max {
+            $width: $width - 1px;
+        }
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}

@@ -11,7 +11,7 @@
   "files": [
     "dist/index.js"
   ],
-  "module": "dist/form-control.js",
+  "module": "dist/index.js",
   "homepage": "https://github.com/jeremN/vertex.git/blob/master/README.md",
   "repository": {
     "type": "git",
@@ -29,8 +29,7 @@
   "license": "ISC",
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "IE 10"
+    "last 2 versions"
   ],
   "devDependencies": {
     "@babel/core": "^7.11.4",
@@ -48,6 +47,8 @@
     "css-loader": "^4.2.1",
     "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",
+    "handlebars": "^4.7.6",
+    "handlebars-loader": "^1.7.1",
     "html-loader": "^1.2.1",
     "html-webpack-plugin": "^4.3.0",
     "imagemin-pngquant": "^9.0.0",
@@ -69,6 +70,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.11.2"
+    "@babel/runtime": "^7.11.2",
+    "d3-array": "^2.7.1",
+    "d3-selection": "^2.0.0"
   }
 }

@@ -1,0 +1,19 @@
+%tagItem {
+	background-color: $grey-pills;
+	color: $black-text;
+	font-size: $font-10;
+	border-radius: 8px;
+	margin: 5px;
+	padding: 2px 6px;
+	text-transform: uppercase;
+}
+
+%noteBtn {
+	padding: 0.5em 0.75em;
+	border-radius: 6px;
+	font-weight: $font-bold;
+	color: $white;
+	min-width: 3em;
+	display: block;
+	text-align: center;
+}

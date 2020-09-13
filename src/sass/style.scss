@@ -1,0 +1,13 @@
+@charset 'UTF-8';
+
+/*Variable, mixins, functions, placeholder*/
+@import 'helpers/variables';
+@import 'helpers/functions';
+@import 'helpers/mixins';
+@import 'helpers/placeholders';
+
+/*Reset first*/
+@import 'base/reset';
+
+@import 'page/index';
+

@@ -1,0 +1,64 @@
+//Colors
+$white: 				#fff;
+$black:					#000;
+$purple:				#29225c;
+$light-purple:			#c1c0fd;
+$turquoise: 			#00d8b5;
+$blue:					#047cd8;
+$grey:					#e8e8e8;
+$grey-darker:			#999;
+$grey-text:				#666;
+$grey-border:			#ccc;
+$grey-pills:			#eee;
+$grey-radio:			#aaa;
+$black-text:			#333;
+$brown:					#313131;
+$green:					#0bbd07;
+$red:					#e30613;
+$yellow:				#ffc000;
+$jade:					#6cbb9f;
+$input-border:			#e5e5e5;
+$panel-shadow:			#000066;
+$score-bg:				#fbfbff;
+
+$facebook-color:		#305698;
+$twitter-color:			#5babf3;
+$linkedin-color:		#0077B5;
+
+//Fonts family
+$openSans: 				"Open Sans", Arial, Helvetica, sans-serif;
+$montSerrat: 			"MontSerrat", sans-serif;
+
+$fontDefault: 			$openSans !default;
+$font2:					$montSerrat;
+
+//Grid
+$gutter:				30px;
+$paddingValue:			15px !default;
+
+//Fonts weight
+$font-black:			900;
+$font-bold: 			700;
+$font-normal: 			400;
+$font-light: 			300;
+
+//Fonts size
+$font-48:				3rem;
+$font-44:				2.75rem;
+$font-40:				2.5rem;
+$font-32: 				2rem;
+$font-24: 				1.5rem;
+$font-20:				1.25rem;
+$font-18: 				1.125rem;
+$font-16:				1rem;
+$font-14:				0.875rem;
+$font-12:				0.75rem;
+$font-10: 				0.625rem;
+
+//Media size
+$xtra-small:			 320px;
+$small:					 576px;
+$medium:			 	 768px;
+$large:			 		 992px;
+$xtra-large:			1200px;
+$fullscreen: 			1920px;
