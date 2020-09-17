@@ -10,14 +10,18 @@ require('babel-polyfill')
 
 const PUBLIC_PATH = path.resolve(__dirname, 'dist')
 const devMode = process.env.NODE_ENV !== 'production'
-const config = require('./src/templates/config.json')
 
 module.exports = {
-  entry: ['babel-polyfill', './src/scripts/index.js'],
+  entry: './src/scripts/index.ts',
   output: {
     filename: 'bundle.js',
-    path: PUBLIC_PATH
+    path: PUBLIC_PATH, 
+    publicPath: 'dist'
   },
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -30,16 +34,14 @@ module.exports = {
         }
       },
       {
-        test: /\.hbs$/,
-        loader: 'handlebars-loader',
-        query: {
-          partialDirs: [
-            path.join(__dirname, 'partials')
-          ],
-          helperDirs: [
-            path.join(__dirname, 'helper')
-          ]
-        }
+        test: /\.(ts|js)$/,
+        use: 'eslint-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.js$/,
@@ -102,8 +104,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Accueil',
       filename: 'index.html',
-      template: 'src/templates/index.hbs',
-      customConf: config
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[contenthash].css'
@@ -127,6 +127,6 @@ module.exports = {
       webp: {
         quality: 75
       }
-    })
+    }),
   ]
 }
