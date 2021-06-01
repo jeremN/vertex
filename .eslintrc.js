@@ -17,7 +17,4 @@ module.exports = {
     './dist',
     '.eslintrc.js',
   ],
-  rules: {
-    'prettier/prettier': 2,
-  },
 }
